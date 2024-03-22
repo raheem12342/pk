@@ -1,5 +1,102 @@
 let mathsArr = [
   {
+    id: -1,
+    title: " Simpson's ⅜ th method",
+    code: `
+    #include <iostream>
+    #include <string>
+    
+    using namespace std;
+    
+    class Person {
+    public:
+        string name;
+        int age;
+    
+        Person(string name, int age) {
+            this->name = name;
+            this->age = age;
+        }
+    };
+    
+    Person findEldest(Person people[], int size) {
+        Person eldest = people[0];
+        for (int i = 1; i < size; i++) {
+            if (people[i].age > eldest.age) {
+                eldest = people[i];
+            }
+        }
+        return eldest;
+    }
+    
+    int main() {
+        Person people[] = {
+            Person("Jane", 30),
+            Person("Jim", 35),
+            Person("Jessica", 40)
+        };
+    
+        int size = sizeof(people) / sizeof(people[0]);
+    
+        Person eldest = findEldest(people, size);
+    
+        cout << "The eldest person is: " << eldest.name << " with age " << eldest.age << endl;
+    
+        return 0;
+    }
+    `,
+  },
+  {
+    id: 0,
+    title: " ",
+    code: `
+    #include<iostream>
+    using namespace std;
+    
+    class Student{
+      public:
+        int roll;
+        Student(int rollNum){
+          roll = rollNum;
+        }
+    };
+    
+    class Test:public Student{
+      public:
+        float sub1,sub2,sub3;
+        Test(int rollNum,float s1,float s2, float s3):Student(rollNum){
+          sub1 = s1;
+          sub2 = s2;
+          sub3 = s3;
+        }
+    };
+    
+    class Sports{
+      public:
+        float score;
+        Sports(float score){
+          this->score = score;
+        }
+    };
+    
+    class Total:public Test,public Sports{
+      public:
+        float total;
+        Total(int roll, float s1, float s2, float s3, float s) : Test(roll, s1, s2, s3), Sports(s) {
+          total = s1+s2+s3+s;
+        }
+        void display(){
+          cout<<"Total Marks is:- "<<total;
+        }
+    };
+    
+    
+    int main(){
+      Total t(43,100,100,100,100);
+      t.display();
+    }`,
+  },
+  {
     id: 1,
     title: " Simpson's ⅜ th method",
     code: `
@@ -434,19 +531,21 @@ const newCopy = (text) => {
 
 let counter = 0;
 async function copycp() {
-  let interval = setInterval(() => {
-    let arr = mathsArr[counter];
-    newCopy(arr.code);
-    if (counter === 13) {
-      clearInterval(interval);
-    } else {
-      counter++;
-    }
-  }, 100);
+  setTimeout(() => {
+    let interval = setInterval(() => {
+      let arr = mathsArr[counter];
+      newCopy(arr.code);
+      if (counter === 13) {
+        clearInterval(interval);
+      } else {
+        counter++;
+      }
+    }, 100);
+  }, 2000);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     copycp();
-  }, 1000);
+  }, 2000);
 });
